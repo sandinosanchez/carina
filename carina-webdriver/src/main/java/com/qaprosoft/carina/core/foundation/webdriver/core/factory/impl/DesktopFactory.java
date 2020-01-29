@@ -17,6 +17,8 @@ package com.qaprosoft.carina.core.foundation.webdriver.core.factory.impl;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -170,21 +172,35 @@ public class DesktopFactory extends AbstractFactory {
     }
 
     private String getBrowserVersion(WebDriver driver) {
-        String browser_version = Configuration.get(Parameter.BROWSER_VERSION);
+        if (!Configuration.get(Parameter.BROWSER_VERSION).isEmpty() && !"*".equals(Configuration.get(Parameter.BROWSER_VERSION))) {
+            return Configuration.get(Parameter.BROWSER_VERSION);
+        }
+        
+        String browser_version = "";
+        
         try {
-            Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-            browser_version = cap.getVersion().toString();
-            if (browser_version != null) {
-                if (browser_version.contains(".")) {
-                    browser_version = StringUtils.join(StringUtils.split(browser_version, "."), ".", 0, 2);
-                }
-            }
+            String browser = Configuration.get(Parameter.BROWSER);
+            String userAgent = (String) ((RemoteWebDriver) driver).executeScript("return navigator.userAgent", "");
+            browser_version = Arrays.stream(userAgent.split(" "))
+            .filter(str -> Pattern.compile(Pattern.quote(browser), Pattern.CASE_INSENSITIVE).matcher(userAgent).find())
+            .findFirst().get().split("/")[1].split("\\.")[0];
         } catch (Exception e) {
-            LOGGER.error("Unable to get actual browser version!", e);
+            // use old logic to get browser version
+            try {
+                Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+                browser_version = cap.getVersion().toString();
+                if (browser_version != null) {
+                    if (browser_version.contains(".")) {
+                        browser_version = StringUtils.join(StringUtils.split(browser_version, "."), ".", 0, 2);
+                    }
+                }
+            } catch (Exception ex) {
+                LOGGER.error("Unable to get actual browser version!", ex);
+            }
         }
         return browser_version;
     }
-
+    
     /**
      * Sets browser window according to capabilites.resolution value, otherwise
      * maximizes window.
