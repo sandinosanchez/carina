@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.qaprosoft.carina.core.foundation.utils.android;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -71,7 +72,7 @@ public class ToastDetector implements Runnable {
         LOGGER.info("Wait for toast...");
         isPresent = false;
         FluentWait<WebDriver> fluentWait = new FluentWait<>(webDriver);
-        fluentWait.withTimeout(waitTimeout, TimeUnit.SECONDS).pollingEvery(300, TimeUnit.MILLISECONDS).until(new Function<WebDriver, Boolean>() {
+        fluentWait.withTimeout(Duration.ofSeconds(waitTimeout)).pollingEvery(Duration.ofMillis(300)).until(new Function<WebDriver, Boolean>() {
             @Override
             public Boolean apply(WebDriver input) {
                 List<?> webElemenList = webDriver.findElements(By.xpath(String.format(TOAST_PATTERN, toastToWait)));
