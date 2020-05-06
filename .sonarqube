@@ -1,2 +1,0 @@
-sonar.modules=carina-api,carina-aws-s3,carina-commons,carina-core,carina-crypto,carina-dataprovider,carina-appcenter,carina-proxy,carina-reporting,carina-utils,carina-webdriver
-sonar.java.source=1.8
