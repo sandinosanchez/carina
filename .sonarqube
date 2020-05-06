@@ -4,5 +4,5 @@ sonar.java.source=1.8
 sonar.sources=src/main
 sonar.tests=src/test
 sonar.java.binaries=target/classes
-sonar.junit.reportPaths=carina-api/target/surefire-reports,carina-aws-s3/target/surefire-reports,carina-commons/target/surefire-reports,carina-core/target/surefire-reports,carina-crypto/target/surefire-reports,carina-dataprovider/target/surefire-reports,carina-appcenter/target/surefire-reports,carina-proxy/target/surefire-reports,carina-reporting/target/surefire-reports,carina-utils/target/surefire-reports,carina-webdriver/target/surefire-reports
+sonar.junit.reportPaths=target/surefire-reports/junitreports
 sonar.modules=carina-api,carina-aws-s3,carina-commons,carina-core,carina-crypto,carina-dataprovider,carina-appcenter,carina-proxy,carina-reporting,carina-utils,carina-webdriver
