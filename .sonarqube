@@ -6,4 +6,5 @@ sonar.sources=src/main
 sonar.tests=src/test
 sonar.java.binaries=target/classes
 sonar.junit.reportPaths=target/surefire-reports
+sonar.log.level=DEBUG
 sonar.modules=carina-api,carina-aws-s3,carina-commons,carina-core,carina-crypto,carina-dataprovider,carina-appcenter,carina-proxy,carina-reporting,carina-utils,carina-webdriver
