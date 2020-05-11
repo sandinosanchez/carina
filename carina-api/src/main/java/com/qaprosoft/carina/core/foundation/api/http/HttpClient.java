@@ -25,6 +25,8 @@ import com.qaprosoft.carina.proxy.SystemProxy;
  * @author Alex Khursevich
  */
 public class HttpClient {
+    private String st;
+    private int unUsedInt;
     public static Response send(RequestSpecification request, String methodPath, HttpMethodType methodType) {
         Response response = null;
         SystemProxy.setupProxy();
