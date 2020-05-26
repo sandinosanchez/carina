@@ -1,7 +1,3 @@
-pipeline {
-  stage {
-    steps {
-      sh echo "hello"
-    }
-  }
+node {
+  echo "qwerty"
 }
