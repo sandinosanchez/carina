@@ -1,5 +1,11 @@
 pipeline {
-  stage {
-    sh echo "hello"
-  }
+    agent { label 'master' }
+    stages {
+        stage('test') {
+            steps {
+                echo "Hello World!"
+                sh "echo Hello from the shell"
+            }
+        }
+    }
 }
