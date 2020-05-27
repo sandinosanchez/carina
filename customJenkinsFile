@@ -1,4 +1,1 @@
-def job = freeStyleJob('SimpleJob')
-job.with {
-    println('Hello brotha')
-}
+println "hello brota"
