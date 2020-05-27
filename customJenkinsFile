@@ -1,12 +1,4 @@
-
-pipeline {
-    agent {label 'master'}
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }    
-    }
+def job = freeStyleJob('SimpleJob')
+job.with {
+    println('Hello brotha')
 }
