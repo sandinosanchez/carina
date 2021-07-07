@@ -54,7 +54,7 @@ import com.qaprosoft.zafira.models.dto.config.ConfigurationType;
  */
 public class ZafiraConfigurator implements IConfigurator, ITestRailManager, IQTestManager {
     private static final Logger LOGGER = Logger.getLogger(ZafiraConfigurator.class);
-    
+    private String unUsedVar;
 
     @Override
     public ConfigurationType getConfiguration() {
